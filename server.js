@@ -22,7 +22,7 @@ var tasks = [
 app.get('/users', function (req, res) {
   var usersAndIDs = users.map(function (element, index) {
     return {id: index, username: element};
-  });
+});
   res.send(usersAndIDs);
 });
 

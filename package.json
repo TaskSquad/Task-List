@@ -1,0 +1,12 @@
+{
+  "name": "mattslist",
+  "version": "1.0.0",
+  "description": "This week, you're going to use [Backbone](http://backbonejs.org/) to build an Issue-Tracking (or \"Task-Management\") browser app.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
