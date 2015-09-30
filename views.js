@@ -40,7 +40,14 @@ var TaskView = Backbone.View.extend({
 ///////////////////
 		// console.log(this.model.attributes.status);
 
-		if((this.model.get("assignee")===this.user.get('username')) || (this.model.get("creator")===this.user.get('username'))){
+		if(this.model.get("status")==="Unassigned"){
+			console.log('unnass log')
+			$('#unassDiv').append(this.$el);
+		}
+		
+
+		else if((this.model.get("assignee")===this.user.get('username')) || (this.model.get("creator")===this.user.get('username'))){
+			console.log('ass ran')
 			if(this.model.get("status")==="Unassigned"){
 				$('.unassUL').append(this.$el);
 			}else if(this.model.get("status")==="Assigned"){
@@ -50,9 +57,8 @@ var TaskView = Backbone.View.extend({
 			}else if(this.model.get("status")==="Done"){
 				$('.doneUL').append(this.$el);
 			}
-		}else if(this.model.get("status")==="Unassigned"){
-			$('#unassDiv').append(this.$el);
-		}
+		  }
+
 
 
 	},
@@ -369,9 +375,10 @@ var UserView = Backbone.View.extend({
 		});
 
 
+    
 		this.listenTo(this.tasks,"change:status", this.changeStatus);
 		this.listenTo(this.tasks, "add", this.addView);
-		this.listenTo(unassigned, "add", this.addView);
+		this.listenTo(unassigned, "add", this.addAss);
 	},
 	events:{
 		"click #logout": "logout"
@@ -391,6 +398,9 @@ var UserView = Backbone.View.extend({
 		var tasks = new TaskView({model:Model, user:this.model});
 	},
 
+    addAss: function(Model){
+		var tasks = new TaskView({model:Model});
+	},
 });
 
 
